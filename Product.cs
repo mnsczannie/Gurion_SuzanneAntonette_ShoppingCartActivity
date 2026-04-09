@@ -8,5 +8,6 @@ namespace _1_ShoppingCartActivity
 {
     internal class Product
     {
+        //josko natapos din magayos ng file at commit
     }
 }
