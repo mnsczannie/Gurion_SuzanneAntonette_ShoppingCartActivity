@@ -31,13 +31,10 @@ namespace _1_ShoppingCartActivity
             return Price * quantity;
         }
 
-        public bool HasEnoughStock(int quantity)
-        {
-            return RemainingStock >= quantity;
-        }
-
         public bool DeductStock(int quantity)
         {
+            if (quantity <= 0)
+                return false;
             if (quantity > RemainingStock)
                 return false;
 
