@@ -15,7 +15,7 @@ namespace _1_ShoppingCartActivity
          *  Remaining Stock
          */
 
-        /* Menu:
+        /* Store Menu:
          * -products
          *  add products
          *      product number
@@ -42,5 +42,15 @@ namespace _1_ShoppingCartActivity
          *  display final total
          */
 
+        /*Need:
+         validation messages:
+            - added/removed product
+            - invalid product number
+            - invalid quantity
+            - added to cart
+                    - out of stock
+            - "are you sure you want to checkout? (y/n)"
+            - "thank you for shopping with us!"
+        */
     }
 }
