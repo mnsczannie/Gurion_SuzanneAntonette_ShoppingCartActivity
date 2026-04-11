@@ -25,6 +25,19 @@
          *  display final total
          */
 
+using _1_ShoppingCartActivity;
+
+static void Main()
+{
+    Product[] products = new Product[]
+        {
+        new Product { Id = 101, Name = "Desktop", Price = 999.99, RemainingStock = 10 },
+        new Product { Id = 102, Name = "Laptop", Price = 499.99, RemainingStock = 20 },
+        new Product { Id = 103, Name = "Smartphone", Price = 199.99, RemainingStock = 15 },
+        new Product { Id = 104, Name = "Smartwatch", Price = 299.99, RemainingStock = 5 },
+        new Product { Id = 105, Name = "Tablet", Price = 399.99, RemainingStock = 8 }
+    };
+}
 /*Need:
  validation messages:
     - added/removed product
