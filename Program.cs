@@ -27,6 +27,7 @@
 
 using _1_ShoppingCartActivity;
 using System.Runtime.InteropServices;
+Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 class CartItem
 {
@@ -40,28 +41,28 @@ class CartItem
     }
 }
 
-class Program
+partial class Program
 {
+    static void Pause()
+    {
+        Console.WriteLine("\nPress any key to continue...");
+        Console.ReadKey();
+    }
     static void Main()
     {
         Product[] products = new Product[]
             {
-            new Product { Id = 101, Name = "Desktop", Price = 25000.00, RemainingStock = 10 },
-            new Product { Id = 102, Name = "Laptop", Price = 30000.00, RemainingStock = 20 },
-            new Product { Id = 103, Name = "Smartphone", Price = 15000.00, RemainingStock = 30 },
-            new Product { Id = 104, Name = "Smartwatch", Price = 1500.00, RemainingStock = 45 },
-            new Product { Id = 105, Name = "Tablet", Price = 12000.00, RemainingStock = 25 },
-            new Product { Id = 201, Name = "Earphones", Price = 800.00, RemainingStock = 50 },
-            new Product { Id = 202, Name = "Headset", Price = 2000.00, RemainingStock = 35 },
-            new Product { Id = 203, Name = "Keyboard", Price = 1500.00, RemainingStock = 35 },
-            new Product { Id = 204, Name = "Mouse", Price = 500.00, RemainingStock = 45 },
-            new Product { Id = 205, Name = "Webcam", Price = 1800.00, RemainingStock = 50 }
+            new Product { Id = 1, Name = "Desktop", Price = 25000.00, RemainingStock = 10 },
+            new Product { Id = 2, Name = "Laptop", Price = 30000.00, RemainingStock = 20 },
+            new Product { Id = 3, Name = "Smartphone", Price = 15000.00, RemainingStock = 30 },
+            new Product { Id = 4, Name = "Smartwatch", Price = 1500.00, RemainingStock = 45 },
+            new Product { Id = 5, Name = "Tablet", Price = 12000.00, RemainingStock = 25 },
+            new Product { Id = 6, Name = "Earphones", Price = 800.00, RemainingStock = 50 },
+            new Product { Id = 7, Name = "Headset", Price = 2000.00, RemainingStock = 35 },
+            new Product { Id = 8, Name = "Keyboard", Price = 1500.00, RemainingStock = 35 },
+            new Product { Id = 9, Name = "Mouse", Price = 500.00, RemainingStock = 45 },
+            new Product { Id = 10, Name = "Webcam", Price = 1800.00, RemainingStock = 50 }
     };
-       static void Pause()
-        {
-            Console.WriteLine("\nPress any key to continue...");
-            Console.ReadKey();
-        }
         CartItem[] cart = new CartItem[20];
         int cartCount = 0;
         string choice = "Y";
@@ -87,7 +88,7 @@ class Program
                 continue;
             }
             Console.Write("Enter quantity: ");
-            if (!int.TryParse(Console.ReadLine(), out int qty) || qty < 0)
+            if (!int.TryParse(Console.ReadLine(), out int qty) || qty <= 0)
             {
                 Console.WriteLine("Invalid quantity.");
                 Pause();
@@ -127,7 +128,6 @@ class Program
                 cart[cartCount].UpdateSubtotal();
                 cartCount++;
             }
-            selected.DeductStock(qty);
             Console.WriteLine("Item added to cart.");
             Console.Write("\nDo you want to add more items? (Y/N): ");
             choice = Console.ReadLine();
