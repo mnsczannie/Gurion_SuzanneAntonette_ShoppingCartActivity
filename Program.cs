@@ -51,16 +51,16 @@ partial class Program
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         Product[] products = new Product[]
             {
-            new Product { Id = 1, Name = "Desktop", Price = 25000.00, RemainingStock = 10 },
-            new Product { Id = 2, Name = "Laptop", Price = 30000.00, RemainingStock = 20 },
-            new Product { Id = 3, Name = "Smartphone", Price = 15000.00, RemainingStock = 30 },
-            new Product { Id = 4, Name = "Smartwatch", Price = 1500.00, RemainingStock = 45 },
-            new Product { Id = 5, Name = "Tablet", Price = 12000.00, RemainingStock = 25 },
-            new Product { Id = 6, Name = "Earphones", Price = 800.00, RemainingStock = 50 },
-            new Product { Id = 7, Name = "Headset", Price = 2000.00, RemainingStock = 35 },
-            new Product { Id = 8, Name = "Keyboard", Price = 1500.00, RemainingStock = 35 },
-            new Product { Id = 9, Name = "Mouse", Price = 500.00, RemainingStock = 45 },
-            new Product { Id = 10, Name = "Webcam", Price = 1800.00, RemainingStock = 50 }
+            new Product { Id = 1, Name = "Desktop", Price = 25000.00, RemainingStock = 10, OriginalStock = 10 },
+            new Product { Id = 2, Name = "Laptop", Price = 30000.00, RemainingStock = 20, OriginalStock = 20 },
+            new Product { Id = 3, Name = "Smartphone", Price = 15000.00, RemainingStock = 30, OriginalStock = 30 },
+            new Product { Id = 4, Name = "Smartwatch", Price = 1500.00, RemainingStock = 45, OriginalStock = 45 },
+            new Product { Id = 5, Name = "Tablet", Price = 12000.00, RemainingStock = 25, OriginalStock = 25 },
+            new Product { Id = 6, Name = "Earphones", Price = 800.00, RemainingStock = 50, OriginalStock = 50 },
+            new Product { Id = 7, Name = "Headset", Price = 2000.00, RemainingStock = 35, OriginalStock = 35 },
+            new Product { Id = 8, Name = "Keyboard", Price = 1500.00, RemainingStock = 35, OriginalStock = 35 },
+            new Product { Id = 9, Name = "Mouse", Price = 500.00, RemainingStock = 45, OriginalStock = 45 },
+            new Product { Id = 10, Name = "Webcam", Price = 1800.00, RemainingStock = 50, OriginalStock = 50 }
     };
         string continueTransaction = "Y";
         while (continueTransaction.ToUpper() == "Y")

@@ -19,10 +19,12 @@ namespace _1_ShoppingCartActivity
         public string Name { get; set; }
         public double Price { get; set; }
         public int RemainingStock { get; set; }
-
+        public int OriginalStock { get; set; }
         public void DisplayProduct()
         {
+            int consumed = OriginalStock - RemainingStock;
             Console.WriteLine($"{Id}: {Name} - ₱{Price}");
+            Console.WriteLine($"Stock Left: {RemainingStock} | Sold: {consumed}");
         }
 
         public double GetItemTotal(int quantity)
