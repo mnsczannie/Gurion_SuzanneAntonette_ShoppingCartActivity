@@ -9,7 +9,6 @@ namespace _1_ShoppingCartActivity
 {
     internal class Product
     {
-
         /* fields/properties
          *  ID
          *  Name
@@ -41,9 +40,5 @@ namespace _1_ShoppingCartActivity
             RemainingStock -= quantity;
             return true;
         }
-
-
-
-        
     }
 }
