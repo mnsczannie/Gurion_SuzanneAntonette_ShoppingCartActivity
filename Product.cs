@@ -22,7 +22,7 @@ namespace _1_ShoppingCartActivity
 
         public void DisplayProduct()
         {
-            Console.WriteLine($"{Id}. {Name} - ${Price}");
+            Console.WriteLine($"{Id}: {Name} - ₱{Price}");
         }
 
         public double GetItemTotal(int quantity)
