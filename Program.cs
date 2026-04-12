@@ -27,8 +27,6 @@
 
 using _1_ShoppingCartActivity;
 using System.Runtime.InteropServices;
-Console.OutputEncoding = System.Text.Encoding.UTF8;
-
 class CartItem
 {
     public Product Product { get; set; }
@@ -50,6 +48,7 @@ partial class Program
     }
     static void Main()
     {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
         Product[] products = new Product[]
             {
             new Product { Id = 1, Name = "Desktop", Price = 25000.00, RemainingStock = 10 },
@@ -75,6 +74,14 @@ partial class Program
                 Console.WriteLine("=== STORE MENU ===");
                 foreach (var p in products)
                     p.DisplayProduct();
+                Console.WriteLine("\n=== ORDERING ===");
+                double tempTotal = 0;
+                for (int i = 9; i < cartCount; i++)
+                {
+                    Console.WriteLine($"- {cart[i].Product.Name} x {cart[i].Quantity} ({cart[i].SubTotal})");
+                    tempTotal += cart[i].SubTotal;
+                }
+                Console.WriteLine($"\nCurrent Total: ₱{tempTotal}");
                 Console.Write("\nEnter product number: ");
                 if (!int.TryParse(Console.ReadLine(), out int productNum) ||
                     productNum < 1 || productNum > products.Length)
