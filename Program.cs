@@ -76,7 +76,7 @@ partial class Program
                     p.DisplayProduct();
                 Console.WriteLine("\n=== ORDERING ===");
                 double tempTotal = 0;
-                for (int i = 9; i < cartCount; i++)
+                for (int i = 0; i < cartCount; i++)
                 {
                     Console.WriteLine($"- {cart[i].Product.Name} x {cart[i].Quantity} ({cart[i].SubTotal})");
                     tempTotal += cart[i].SubTotal;
