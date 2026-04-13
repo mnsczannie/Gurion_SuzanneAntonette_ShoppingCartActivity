@@ -12,4 +12,4 @@ The system **prevents** invalid inputs, duplicate cart entries, and over-purchas
 It also **computes** the total cost of the cart, applies discounts, and provides a summary of the purchase.
 
 > **AI USAGE**: This project was developed with the assistance of AI Tools, in the areas of:
-- PAGFIGURE OUT PANU MAG COMMIT
+- 

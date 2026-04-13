@@ -73,7 +73,9 @@ partial class Program
                 Console.Clear();
                 Console.WriteLine("=== STORE MENU ===");
                 foreach (var p in products)
-                    p.DisplayProduct();
+                {
+                    Console.WriteLine($"{p.Id}. {p.Name} - ₱{p.Price}");
+                }
                 Console.WriteLine("\n=== ORDERING ===");
                 double tempTotal = 0;
                 for (int i = 0; i < cartCount; i++)
@@ -127,7 +129,6 @@ partial class Program
                     if (cartCount >= cart.Length)
                     {
                         Console.WriteLine("Cart is full. Cannot add more items.");
-                        Pause();
                         continue;
                     }
                     cart[cartCount] = new CartItem
@@ -143,6 +144,7 @@ partial class Program
                 choice = Console.ReadLine();
             }
             // checkout
+            //ror
             Console.Write("\nAre you sure you want to checkout? (Y/N): ");
             string confirm = Console.ReadLine();
             if (confirm.ToUpper() != "Y")
