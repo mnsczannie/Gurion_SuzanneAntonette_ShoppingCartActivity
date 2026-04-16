@@ -14,7 +14,7 @@ This project **demonstrates** the application of fundamental programming concept
 	3. **""doing the menu commands!""**: Added functionality to handle user input for product selection and quantity, including basic validation.
 	4. **"fixes (the validation for the Y/N is wrong..)""**: Improved input validation to ensure only valid product numbers and quantities are accepted.
 	
-## **AI USAGE**: 
+## **AI Usage**: 
 AI tools (ChatGPT) were used only for guidance, debugging, and explanation, in accordance with academic integrity policies. The following outlines how AI assisted in the development of this project:
 
 ### 🔹 Prompts / Questions Asked
