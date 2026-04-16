@@ -49,7 +49,7 @@ partial class Program
     static void Main()
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
-        Product[] products = new Product[]
+        Product[] products = new Product[]//array of products
             {
             new Product { Id = 1, Name = "Desktop", Price = 25000.00, RemainingStock = 10, OriginalStock = 10 },
             new Product { Id = 2, Name = "Laptop", Price = 30000.00, RemainingStock = 20, OriginalStock = 20 },
@@ -62,7 +62,22 @@ partial class Program
             new Product { Id = 9, Name = "Mouse", Price = 500.00, RemainingStock = 45, OriginalStock = 45 },
             new Product { Id = 10, Name = "Webcam", Price = 1800.00, RemainingStock = 50, OriginalStock = 50 }
     };
+        static string GetYesOrNo(string message)
+        {
+            string input;
+            while (true)
+            {
+                Console.Write(message);
+                input = Console.ReadLine().Trim().ToUpper();
+
+                if (input == "Y" || input == "N")
+                    return input;
+
+                Console.WriteLine("Invalid input. Please enter Y or N only.");
+            }
+        }
         string continueTransaction = "Y";
+
         while (continueTransaction.ToUpper() == "Y")
         {
             CartItem[] cart = new CartItem[20];
@@ -140,19 +155,17 @@ partial class Program
                     cartCount++;
                 }
                 Console.WriteLine("Item added to cart.");
-                Console.Write("\nDo you want to add more items? (Y/N): ");
-                choice = Console.ReadLine();
+                choice = GetYesOrNo("\nDo you want to add more items? (Y/N): ");
             }
             // checkout
-            //ror
-            Console.Write("\nAre you sure you want to checkout? (Y/N): ");
-            string confirm = Console.ReadLine();
+            string confirm = GetYesOrNo("\nAre you sure you want to checkout? (Y/N): ");
             if (confirm.ToUpper() != "Y")
             {
                 Console.WriteLine("Checkout cancelled!");
                 return;
             }
-            Console.Clear();
+            else
+                Console.Clear();
             Console.WriteLine("=== RECEIPT ===");
             double grandTotal = 0;
             for (int i = 0; i < cartCount; i++)
@@ -173,8 +186,7 @@ partial class Program
             Console.WriteLine("\n=== UPDATED STOCK ===");
             foreach (var p in products)
                 p.DisplayProduct();
-            Console.Write("\nStart another transaction? (Y/N): ");
-            continueTransaction = Console.ReadLine();
+            continueTransaction = GetYesOrNo("\nStart another transaction? (Y/N): ");
 
             Console.Clear();
         }
