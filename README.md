@@ -1,11 +1,11 @@
 ﻿# Shopping Cart System in C#
 > Suzanne Antonette F. Gurion | BSIT 1-1
 ## Project Description
-This project is a console-based Shopping Cart System developed using C#. It allows users to select products, enter quantities, validate inputs, and manage a shopping cart while tracking the remaining stock of each item.
+This project is a **console-based** Shopping Cart System developed using C#. It **allows** users to select products, enter quantities, validate inputs, and manage a shopping cart while tracking the remaining stock of each item.
 
-The system ensures that users cannot input invalid data, prevents duplicate cart entries by updating quantities instead, and avoids purchasing beyond available stock. Additionally, it computes the total cost of items in the cart, applies a discount when applicable, and generates a summary of the transaction.
+The system **ensures** that users cannot input invalid data, **prevents** duplicate cart entries by updating quantities instead, and **avoids** purchasing beyond available stock. Additionally, it computes the total cost of items in the cart, applies a discount when applicable, and generates a summary of the transaction.
 
-This project demonstrates the application of fundamental programming concepts such as object-oriented programming, arrays of objects, loops, conditional statements, and input validation.
+This project **demonstrates** the application of fundamental programming concepts such as object-oriented programming, arrays of objects, loops, conditional statements, and input validation.
 
 ## Meaningful Commits
 	The development of this project is reflected through the following meaningful commits, showing step-by-step progress:
@@ -14,7 +14,8 @@ This project demonstrates the application of fundamental programming concepts su
 	3. **""doing the menu commands!""**: Added functionality to handle user input for product selection and quantity, including basic validation.
 	4. **"fixes (the validation for the Y/N is wrong..)""**: Improved input validation to ensure only valid product numbers and quantities are accepted.
 	
-## **AI USAGE**: AI tools (ChatGPT) were used only for guidance, debugging, and explanation, in accordance with academic integrity policies. The following outlines how AI assisted in the development of this project:
+## **AI USAGE**: 
+AI tools (ChatGPT) were used only for guidance, debugging, and explanation, in accordance with academic integrity policies. The following outlines how AI assisted in the development of this project:
 
 ### 🔹 Prompts / Questions Asked
 	“How to fix validation for Y/N input in C#?”
