@@ -9,10 +9,10 @@ This project **demonstrates** the application of fundamental programming concept
 
 ## Meaningful Commits
 	The development of this project is reflected through the following meaningful commits, showing step-by-step progress:
-	1. **Initial Commit**: Set up the project structure and created basic classes for Product and CartItem.
-	2. **"doing the product thing"**: Implemented a method to initialize the product list with predefined items and their stock.
-	3. **""doing the menu commands!""**: Added functionality to handle user input for product selection and quantity, including basic validation.
-	4. **"fixes (the validation for the Y/N is wrong..)""**: Improved input validation to ensure only valid product numbers and quantities are accepted.
+	1. Initial Commit: Set up the project structure and created basic classes for Product and CartItem.
+	2. "doing the product thing": Implemented a method to initialize the product list with predefined items and their stock.
+	3. "doing the menu commands!": Added functionality to handle user input for product selection and quantity, including basic validation.
+	4. "fixes (the validation for the Y/N is wrong..)": Improved input validation to ensure only valid product numbers and quantities are accepted.
 	
 ## **AI Usage**: 
 AI tools (ChatGPT) were used only for guidance, debugging, and explanation, in accordance with academic integrity policies. The following outlines how AI assisted in the development of this project:
