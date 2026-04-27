@@ -80,7 +80,7 @@ partial class Program
 
         while (continueTransaction.ToUpper() == "Y")
         {
-            CartItem[] cart = new CartItem[20];
+            CartItem[] cart = new CartItem[5];
             int cartCount = 0;
             string choice = "Y";
             while (choice.ToUpper() == "Y")
