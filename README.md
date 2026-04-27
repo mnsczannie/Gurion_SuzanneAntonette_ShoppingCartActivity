@@ -38,3 +38,7 @@ AI tools (ChatGPT) were used only for guidance, debugging, and explanation, in a
 	-Refined validation logic to prevent invalid inputs and incorrect transactions
 	-Cleaned and organized the code for better readability and structure
 	-Verified and tested all AI-suggested solutions before applying them
+
+
+[placeholder]
+[placeholder]
