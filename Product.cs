@@ -15,6 +15,8 @@ namespace _1_ShoppingCartActivity
          *  Price
          *  Remaining Stock
          */
+
+        //fields and properties
         public int Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
@@ -44,3 +46,5 @@ namespace _1_ShoppingCartActivity
         }
     }
 }
+//placeholder
+class Placeholder
