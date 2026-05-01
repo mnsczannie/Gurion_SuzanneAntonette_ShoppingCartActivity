@@ -125,7 +125,7 @@ partial class Program
                     {
                         CartItem[] cart = new CartItem[50];
                         int cartCount = 0;
-                        bool addingItems = true
+                        bool addingItems = true;
                         while (addingItems)
                         {
                             Console.Clear();
