@@ -17,10 +17,12 @@ This project demonstrates object-oriented programming, arrays, loops, conditiona
 
 ---
 
-## ✨ Part 2: Enhanced Features Implemented
+## Part 2: Enhanced Features Implemented
 ![Main Menu Screenshot](images/MainMenu.png)
+
 ### 1. Cart Management System
 ![Cart Management Screenshot](images/CartManagement.png)
+
 The program now allows full cart control before checkout:
 - View cart items
 - Remove items
@@ -34,12 +36,13 @@ Each update properly adjusts product stock to prevent inconsistencies.
 
 ### 2. Product Search Feature
 ![Product Search Screenshot](images/SearchByName.png)
+
 A search function was added to allow users to find products by name.
 
 Example:
 Enter product name to search: "mouse"
 Search results:
-- 16. Mouse - ₱500
+16. Mouse - ₱500
 
 Displays matching products with product number, name, and price.
 
@@ -47,6 +50,7 @@ Displays matching products with product number, name, and price.
 
 ### 3. Product Categories
 ![Product Categories](images/Transaction.png)
+
 Products are grouped into categories:
 - Food
 - Electronics
@@ -70,6 +74,7 @@ Mouse has only 2 left.
 
 ### 5. Payment Validation System
 ![Payment Validation Screenshot](images/PaymentValidation.png)
+
 The checkout process now validates payment properly:
 - Only numeric input is accepted
 - Payment must be >= final total
@@ -87,6 +92,7 @@ Change: ₱800
 
 ### 6. Receipt Generation System
 ![Receipt Generation Screenshot](images/Receipt.png)
+
 Each transaction generates a receipt containing:
 - Receipt number
 - Date and time of purchase
