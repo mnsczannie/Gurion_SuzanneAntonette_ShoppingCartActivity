@@ -69,6 +69,7 @@ Mouse has only 2 left.
 ---
 
 ### 5. Payment Validation System
+![Payment Validation Screenshot](images/PaymentValidation.png)
 The checkout process now validates payment properly:
 - Only numeric input is accepted
 - Payment must be >= final total

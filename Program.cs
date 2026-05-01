@@ -120,7 +120,6 @@ partial class Program
             switch (choice)
             {
                 case "1":
-                    while (true)
                     {
                         CartItem[] cart = new CartItem[50];
                         int cartCount = 0;
@@ -379,6 +378,7 @@ partial class Program
                         double change = payment - finalTotal;
                         Console.WriteLine($"Change: ₱{change}");
                         Console.WriteLine("\nThank you for shopping with us!");
+                        isCheckingOut = true;
                         orders[orderCount++] = new Order
                         {
                             ReceiptNumber = receiptCounter - 1,
