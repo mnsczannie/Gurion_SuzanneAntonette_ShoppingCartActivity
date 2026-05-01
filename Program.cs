@@ -16,6 +16,31 @@ class Order
     public int ReceiptNumber;
     public double FinalTotal;
 }
+static void SearchProduct(Product[] products)
+{
+    Console.Write("\nEnter product name to search: ");
+    string keyword = Console.ReadLine().ToLower();
+
+    bool found = false;
+
+    Console.WriteLine("\n=== SEARCH RESULTS ===");
+
+    foreach (var p in products)
+    {
+        if (p.Name.ToLower().Contains(keyword))
+        {
+            p.DisplayProduct();
+            found = true;
+        }
+    }
+
+    if (!found)
+    {
+        Console.WriteLine("No matching product found.");
+    }
+
+    Pause();
+}
 partial class Program
 {
     static void Pause()
@@ -82,11 +107,11 @@ partial class Program
         while (!exit)
         {
             Console.Clear();
-            Console.WriteLine("=== MAIN MENU ===");
             Console.WriteLine("1. Start New Transaction");
             Console.WriteLine("2. View Order History");
             Console.WriteLine("3. View Stock Report");
-            Console.WriteLine("4. Exit");
+            Console.WriteLine("4. Search Product");
+            Console.WriteLine("5. Exit");
 
             Console.Write("\nChoose option: ");
             string choice = Console.ReadLine();
@@ -99,8 +124,8 @@ partial class Program
                     {
                         CartItem[] cart = new CartItem[50];
                         int cartCount = 0;
-                        string addMore = "Y";
-                        while (addMore.ToUpper() == "Y")
+                        bool addingItems = true
+                        while (addingItems)
                         {
                             Console.Clear();
                             Console.WriteLine("=== STORE MENU ===");// products
@@ -181,7 +206,12 @@ partial class Program
                                 cartCount++;
                             }
                             Console.WriteLine("Item added to cart.");
-                            addMore = GetYesOrNo("\nDo you want to add more items? (Y/N): ");
+                            string input = GetYesOrNo("\nDo you want to add more items? (Y/N): ");
+
+                            if (input == "N")
+                            {
+                                addingItems = false;
+                            }
                         }
                         bool isCheckingOut = false;
                         while (!isCheckingOut)
@@ -385,9 +415,14 @@ partial class Program
                     break;
 
                 case "4":
+                    SearchProduct(products);
+                    break;
+
+                case "5":
                     exit = true;
                     break;
-            
+                }
+
             }
         }
 
