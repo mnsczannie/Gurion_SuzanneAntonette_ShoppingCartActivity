@@ -31,7 +31,7 @@ partial class Program
             Console.Write(message);
             input = Console.ReadLine().Trim().ToUpper();
 
-            if (input = "Y" || input == "N")
+            if (input == "Y" || input == "N")
                 return input;
 
             Console.WriteLine("Invalid input. Please enter Y or N only.");
@@ -45,7 +45,7 @@ partial class Program
         //product list
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         Product[] products = new Product[]//array of products
-            {
+        {
                 //food
                 new Product { Id = 1, Name = "Burger", Price = 120, RemainingStock = 25, OriginalStock = 25, Category = "Food" },
                 new Product { Id = 2, Name = "Pizza", Price = 350, RemainingStock = 15, OriginalStock = 15, Category = "Food" },
@@ -75,8 +75,8 @@ partial class Program
                 new Product { Id = 22, Name = "Dress", Price = 1000, RemainingStock = 12, OriginalStock = 12, Category = "Clothing" },
                 new Product { Id = 23, Name = "Socks", Price = 100, RemainingStock = 50, OriginalStock = 50, Category = "Clothing" },
                 new Product { Id = 24, Name = "Sweater", Price = 2500, RemainingStock = 10, OriginalStock = 10, Category = "Clothing" }
-            }
-    };
+        };
+
         string continueTransaction = "Y";
         while (continueTransaction.ToUpper() == "Y")
         {
@@ -87,9 +87,18 @@ partial class Program
             {
                 Console.Clear();
                 Console.WriteLine("=== STORE MENU ===");// products
-                foreach (var p in products)
+                string[] categories = { "Food", "Electronics", "Clothing" };
+                foreach (string category in categories)
                 {
-                    Console.WriteLine($"{p.Id}. {p.Name} - ₱{p.Price}");
+                    Console.WriteLine($"\n===== {category.ToUpper()} =====");
+
+                    foreach (var p in products)
+                    {
+                        if (p.Category == category)
+                        {
+                            p.DisplayProduct();
+                        }
+                    }
                 }
                 Console.WriteLine("\n=== ORDERING ===");
                 double tempTotal = 0;
@@ -161,32 +170,32 @@ partial class Program
             while (!isCheckingOut)
             {
                 Console.Clear();
+                Console.WriteLine("=== CURRENT CART ===");
+                double total = 0;
+                if (cartCount == 0)
+                {
+                    Console.WriteLine("Cart is empty.");
+                }
+                else
+                {
+                    for (int i = 0; i < cartCount; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {cart[i].Product.Name} x {cart[i].Quantity} = ₱{cart[i].SubTotal}");
+                        total += cart[i].SubTotal;
+                    }
+                }
+                Console.WriteLine($"\nCURRENT TOTAL: ₱{total}");
                 Console.WriteLine("\n=== CART MENU ===");
-                Console.WriteLine("1. View Cart");
-                Console.WriteLine("2. Remove Item");
-                Console.WriteLine("3. Update Quantity");
-                Console.WriteLine("4. Clear Cart");
-                Console.WriteLine("5. Checkout");
+                Console.WriteLine("1. Remove Item");
+                Console.WriteLine("2. Update Quantity");
+                Console.WriteLine("3. Clear Cart");
+                Console.WriteLine("4. Checkout");
 
-                Console.Write("Choose option: ");
+                Console.Write("\nChoose option: ");
                 string cartChoice = Console.ReadLine();
                 switch (cartChoice)
                 {
-                    case "1": // VIEW CART
-                        Console.WriteLine("\n=== YOUR CART ===");
-                        double total = 0;
-
-                        for (int i = 0; i < cartCount; i++)
-                        {
-                            Console.WriteLine($"{i + 1}. {cart[i].Product.Name} x {cart[i].Quantity} = ₱{cart[i].SubTotal}");
-                            total += cart[i].SubTotal;
-                        }
-
-                        Console.WriteLine($"Total: ₱{total}");
-                        Pause();
-                        break;
-
-                    case "2": // REMOVE ITEM
+                    case "1": 
                         Console.Write("Enter item number to remove: ");
                         if (int.TryParse(Console.ReadLine(), out int removeIndex) &&
                             removeIndex > 0 && removeIndex <= cartCount)
@@ -212,7 +221,7 @@ partial class Program
                         Pause();
                         break;
 
-                    case "3": // UPDATE QUANTITY
+                    case "2": 
                         Console.Write("Enter item number: ");
                         if (int.TryParse(Console.ReadLine(), out int updateIndex) &&
                             updateIndex > 0 && updateIndex <= cartCount)
@@ -258,7 +267,7 @@ partial class Program
                         Pause();
                         break;
 
-                    case "4": // CLEAR CART
+                    case "3": 
                         for (int i = 0; i < cartCount; i++)
                         {
                             cart[i].Product.RemainingStock += cart[i].Quantity;
@@ -269,14 +278,9 @@ partial class Program
                         Pause();
                         break;
 
-                    case "5": // CHECKOUT
+                    case "4":
                         isCheckingOut = true;
-                        orders [orderCount++] = new Order
-                        {
-                            ReceiptNumber = receiptCounter - 1,
-                            FinalTotal = finalTotal
-                        };
-            break;
+                        break;
 
                     default:
                         Console.WriteLine("Invalid choice.");
@@ -284,42 +288,28 @@ partial class Program
                         break;
                 }
             }
-            }
-            // checkout
-            string confirm = GetYesOrNo("\nAre you sure you want to checkout? (Y/N): ");
-            if (confirm.ToUpper() != "Y")
-            {
-                Console.WriteLine("Checkout cancelled!");
-                return;
-            }
-            else//receipt
-                Console.Clear();
-
-            orders[orderCount++] = new Order
-            {
-                ReceiptNumber = receiptCounter - 1,
-                FinalTotal = finalTotal // will be updated after calculating total
-            };
-
             Console.WriteLine("=== RECEIPT ===");
+            double grandTotal = 0;
+            double discount = 0;
+            double finalTotal = 0;
+            grandTotal = 0;
             Console.WriteLine($"Receipt No: {receiptCounter:D4}");
             Console.WriteLine($"Date: {DateTime.Now}");
             receiptCounter++;
-            double grandTotal = 0;
             for (int i = 0; i < cartCount; i++)
             {
                 Console.WriteLine($"{cart[i].Product.Name} x {cart[i].Quantity} = ₱{cart[i].SubTotal}");
                 grandTotal += cart[i].SubTotal;
             }
             Console.WriteLine($"\nGrand Total: ₱{grandTotal}");
-            double discount = 0;
             if (grandTotal >= 5000)
             {
                 discount = grandTotal * 0.10;
                 Console.WriteLine($"Discount (10%): ₱{discount}");
             }
-            double finalTotal = grandTotal - discount;
+            finalTotal = grandTotal - discount;
             Console.WriteLine($"Final Total: ₱{finalTotal}");
+
             double payment;
 
             while (true)
@@ -343,7 +333,11 @@ partial class Program
             double change = payment - finalTotal;
             Console.WriteLine($"Change: ₱{change}");
             Console.WriteLine("\nThank you for shopping with us!");
-
+            orders[orderCount++] = new Order
+            {
+                ReceiptNumber = receiptCounter - 1,
+                FinalTotal = finalTotal // will be updated after calculating total
+            };
             Console.WriteLine("\n=== UPDATED STOCK ===");
             foreach (var p in products)
                 p.DisplayProduct();
@@ -364,21 +358,8 @@ partial class Program
                 Console.WriteLine($"Receipt #{orders[i].ReceiptNumber:D4} - ₱{orders[i].FinalTotal}");
             }
         }
+
     }
+
 }
-        
-        
 
-
-
-
-/*Need:
- validation messages:
-    - added/removed product
-    - invalid product number
-    - invalid quantity
-    - added to cart
-            - out of stock
-    - "are you sure you want to checkout? (y/n)"
-    - "thank you for shopping with us!"
-*/
