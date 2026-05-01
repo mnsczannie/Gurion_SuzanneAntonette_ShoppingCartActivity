@@ -1,31 +1,4 @@
-﻿/* Store Menu:
-         * -products[not sure if i would still make this]
-         *  add products
-         *      product number
-         *      price
-         *      stock
-         *  remove products
-         *  display products
-         * -orders
-         *  display products (check)
-         *  Enter product number 
-         *      validate: not existing, wrong input, duplicate (if yes, update the existing)
-         *  Enter quantity
-         *      validate: negative, out of stock, not a number
-         *  add to cart
-         *      (fixed-size cart) full = 20 items
-         *      or
-         *      keep going util user is done
-         *  show grand total
-         * -Checkout
-         *  display cart items
-         *  display grand total
-         *  enter discount code
-         *      (if grand total >= 5000) 10% discount
-         *  display final total
-         */
-
-using _1_ShoppingCartActivity;
+﻿using _1_ShoppingCartActivity;
 using System.Runtime.InteropServices;
 class CartItem
 {
@@ -48,20 +21,42 @@ partial class Program
     }
     static void Main()
     {
+        //product list
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         Product[] products = new Product[]//array of products
             {
-            new Product { Id = 1, Name = "Desktop", Price = 25000.00, RemainingStock = 10, OriginalStock = 10 },
-            new Product { Id = 2, Name = "Laptop", Price = 30000.00, RemainingStock = 20, OriginalStock = 20 },
-            new Product { Id = 3, Name = "Smartphone", Price = 15000.00, RemainingStock = 30, OriginalStock = 30 },
-            new Product { Id = 4, Name = "Smartwatch", Price = 1500.00, RemainingStock = 45, OriginalStock = 45 },
-            new Product { Id = 5, Name = "Tablet", Price = 12000.00, RemainingStock = 25, OriginalStock = 25 },
-            new Product { Id = 6, Name = "Earphones", Price = 800.00, RemainingStock = 50, OriginalStock = 50 },
-            new Product { Id = 7, Name = "Headset", Price = 2000.00, RemainingStock = 35, OriginalStock = 35 },
-            new Product { Id = 8, Name = "Keyboard", Price = 1500.00, RemainingStock = 35, OriginalStock = 35 },
-            new Product { Id = 9, Name = "Mouse", Price = 500.00, RemainingStock = 45, OriginalStock = 45 },
-            new Product { Id = 10, Name = "Webcam", Price = 1800.00, RemainingStock = 50, OriginalStock = 50 }
+                //food
+                new Product { Id = 1, Name = "Burger", Price = 120, RemainingStock = 25, OriginalStock = 25, Category = "Food" },
+                new Product { Id = 2, Name = "Pizza", Price = 350, RemainingStock = 15, OriginalStock = 15, Category = "Food" },
+                new Product { Id = 3, Name = "Pasta", Price = 180, RemainingStock = 20, OriginalStock = 20, Category = "Food" },
+                new Product { Id = 4, Name = "Instant Noodles", Price = 25, RemainingStock = 50, OriginalStock = 50, Category = "Food" },
+                new Product { Id = 5, Name = "Bread", Price = 60, RemainingStock = 30, OriginalStock = 30, Category = "Food" },
+                new Product { Id = 6, Name = "Milk", Price = 90, RemainingStock = 20, OriginalStock = 20, Category = "Food" },
+                new Product { Id = 7, Name = "Eggs (Dozen)", Price = 110, RemainingStock = 25, OriginalStock = 25, Category = "Food" },
+                new Product { Id = 8, Name = "Rice (1kg)", Price = 55, RemainingStock = 40, OriginalStock = 40, Category = "Food" },
+                
+                //electronics
+                new Product { Id = 9, Name = "Desktop", Price = 25000, RemainingStock = 10, OriginalStock = 10, Category = "Electronics" },
+                new Product { Id = 10, Name = "Laptop", Price = 30000, RemainingStock = 8, OriginalStock = 8, Category = "Electronics" },
+                new Product { Id = 11, Name = "Smartphone", Price = 15000, RemainingStock = 15, OriginalStock = 15, Category = "Electronics" },
+                new Product { Id = 12, Name = "Tablet", Price = 12000, RemainingStock = 10, OriginalStock = 10, Category = "Electronics" },
+                new Product { Id = 13, Name = "Smartwatch", Price = 2500, RemainingStock = 20, OriginalStock = 20, Category = "Electronics" },
+                new Product { Id = 14, Name = "Earphones", Price = 800, RemainingStock = 30, OriginalStock = 30, Category = "Electronics" },
+                new Product { Id = 15, Name = "Keyboard", Price = 1500, RemainingStock = 20, OriginalStock = 20, Category = "Electronics" },
+                new Product { Id = 16, Name = "Mouse", Price = 500, RemainingStock = 25, OriginalStock = 25, Category = "Electronics" },
+    
+                //clothing
+                new Product { Id = 17, Name = "T-shirt", Price = 300, RemainingStock = 40, OriginalStock = 40, Category = "Clothing" },
+                new Product { Id = 18, Name = "Jeans", Price = 900, RemainingStock = 20, OriginalStock = 20, Category = "Clothing" },
+                new Product { Id = 19, Name = "Jacket", Price = 1500, RemainingStock = 15, OriginalStock = 15, Category = "Clothing" },
+                new Product { Id = 20, Name = "Hoodie", Price = 1200, RemainingStock = 18, OriginalStock = 18, Category = "Clothing" },
+                new Product { Id = 21, Name = "Shorts", Price = 400, RemainingStock = 25, OriginalStock = 25, Category = "Clothing" },
+                new Product { Id = 22, Name = "Dress", Price = 1000, RemainingStock = 12, OriginalStock = 12, Category = "Clothing" },
+                new Product { Id = 23, Name = "Socks", Price = 100, RemainingStock = 50, OriginalStock = 50, Category = "Clothing" },
+                new Product { Id = 24, Name = "Sweater", Price = 2500, RemainingStock = 10, OriginalStock = 10, Category = "Clothing" }
+            }
     };
+
         static string GetYesOrNo(string message)
         {
             string input;
@@ -70,7 +65,7 @@ partial class Program
                 Console.Write(message);
                 input = Console.ReadLine().Trim().ToUpper();
 
-                if (input == "Y" || input == "N")
+                if (input = "Y" || input == "N")
                     return input;
 
                 Console.WriteLine("Invalid input. Please enter Y or N only.");
@@ -164,8 +159,16 @@ partial class Program
                 Console.WriteLine("Checkout cancelled!");
                 return;
             }
-            else
+            else//receipt
                 Console.Clear();
+
+            Console.WriteLine("\n=== CART MENU ===");
+            Console.WriteLine("1. View Cart");
+            Console.WriteLine("2. Remove Item");
+            Console.WriteLine("3. Update Quantity");
+            Console.WriteLine("4. Clear Cart");
+            Console.WriteLine("5. Checkout");
+
             Console.WriteLine("=== RECEIPT ===");
             double grandTotal = 0;
             for (int i = 0; i < cartCount; i++)
@@ -183,6 +186,7 @@ partial class Program
             double finalTotal = grandTotal - discount;
             Console.WriteLine($"Final Total: ₱{finalTotal}");
             Console.WriteLine("\nThank you for shopping with us!");
+
             Console.WriteLine("\n=== UPDATED STOCK ===");
             foreach (var p in products)
                 p.DisplayProduct();

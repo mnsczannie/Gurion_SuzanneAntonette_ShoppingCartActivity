@@ -8,18 +8,11 @@ using System.Threading.Tasks;
 namespace _1_ShoppingCartActivity
 {
     internal class Product
-    {
-        /* fields/properties
-         *  ID
-         *  Name
-         *  Price
-         *  Remaining Stock
-         */
-
-        //fields and properties
+    { //fields and properties
         public int Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
+        public string Category { get; set; }//for the new product list
         public int RemainingStock { get; set; }
         public int OriginalStock { get; set; }
         public void DisplayProduct()
@@ -46,5 +39,3 @@ namespace _1_ShoppingCartActivity
         }
     }
 }
-//placeholder
-class Placeholder
