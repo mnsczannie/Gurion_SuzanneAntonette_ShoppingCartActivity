@@ -21,6 +21,7 @@ partial class Program
     }
     static void Main()
     {
+        int receiptCounter = 1;
         //product list
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         Product[] products = new Product[]//array of products
@@ -57,8 +58,8 @@ partial class Program
             }
     };
 
-        static string GetYesOrNo(string message)
-        {
+        static string GetYesOrNo(string message)//validation for yes or no input
+    {
             string input;
             while (true)
             {
@@ -71,8 +72,8 @@ partial class Program
                 Console.WriteLine("Invalid input. Please enter Y or N only.");
             }
         }
-        string continueTransaction = "Y";
 
+        string continueTransaction = "Y";
         while (continueTransaction.ToUpper() == "Y")
         {
             CartItem[] cart = new CartItem[5];
@@ -81,7 +82,7 @@ partial class Program
             while (choice.ToUpper() == "Y")
             {
                 Console.Clear();
-                Console.WriteLine("=== STORE MENU ===");
+                Console.WriteLine("=== STORE MENU ===");// products
                 foreach (var p in products)
                 {
                     Console.WriteLine($"{p.Id}. {p.Name} - ₱{p.Price}");
@@ -152,6 +153,129 @@ partial class Program
                 Console.WriteLine("Item added to cart.");
                 choice = GetYesOrNo("\nDo you want to add more items? (Y/N): ");
             }
+            bool isCheckingOut = false;
+            while (!isCheckingOut)
+            {
+                Console.Clear();
+                Console.WriteLine("\n=== CART MENU ===");
+                Console.WriteLine("1. View Cart");
+                Console.WriteLine("2. Remove Item");
+                Console.WriteLine("3. Update Quantity");
+                Console.WriteLine("4. Clear Cart");
+                Console.WriteLine("5. Checkout");
+
+                Console.Write("Choose option: ");
+                string cartChoice = Console.ReadLine();
+                switch (cartChoice)
+                {
+                    case "1": // VIEW CART
+                        Console.WriteLine("\n=== YOUR CART ===");
+                        double total = 0;
+
+                        for (int i = 0; i < cartCount; i++)
+                        {
+                            Console.WriteLine($"{i + 1}. {cart[i].Product.Name} x {cart[i].Quantity} = ₱{cart[i].SubTotal}");
+                            total += cart[i].SubTotal;
+                        }
+
+                        Console.WriteLine($"Total: ₱{total}");
+                        Pause();
+                        break;
+
+                    case "2": // REMOVE ITEM
+                        Console.Write("Enter item number to remove: ");
+                        if (int.TryParse(Console.ReadLine(), out int removeIndex) &&
+                            removeIndex > 0 && removeIndex <= cartCount)
+                        {
+                            removeIndex--;
+
+                            // restore stock
+                            cart[removeIndex].Product.RemainingStock += cart[removeIndex].Quantity;
+
+                            // shift items
+                            for (int i = removeIndex; i < cartCount - 1; i++)
+                            {
+                                cart[i] = cart[i + 1];
+                            }
+
+                            cartCount--;
+                            Console.WriteLine("Item removed.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
+                        Pause();
+                        break;
+
+                    case "3": // UPDATE QUANTITY
+                        Console.Write("Enter item number: ");
+                        if (int.TryParse(Console.ReadLine(), out int updateIndex) &&
+                            updateIndex > 0 && updateIndex <= cartCount)
+                        {
+                            updateIndex--;
+
+                            Console.Write("Enter new quantity: ");
+                            if (int.TryParse(Console.ReadLine(), out int newQty) && newQty > 0)
+                            {
+                                int difference = newQty - cart[updateIndex].Quantity;
+
+                                if (difference > 0)
+                                {
+                                    if (cart[updateIndex].Product.RemainingStock >= difference)
+                                    {
+                                        cart[updateIndex].Product.RemainingStock -= difference;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Not enough stock.");
+                                        Pause();
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    cart[updateIndex].Product.RemainingStock += Math.Abs(difference);
+                                }
+
+                                cart[updateIndex].Quantity = newQty;
+                                cart[updateIndex].UpdateSubtotal();
+                                Console.WriteLine("Quantity updated.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid quantity.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input.");
+                        }
+                        Pause();
+                        break;
+
+                    case "4": // CLEAR CART
+                        for (int i = 0; i < cartCount; i++)
+                        {
+                            cart[i].Product.RemainingStock += cart[i].Quantity;
+                        }
+
+                        cartCount = 0;
+                        Console.WriteLine("Cart cleared.");
+                        Pause();
+                        break;
+
+                    case "5": // CHECKOUT
+                        isCheckingOut = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid choice.");
+                        Pause();
+                        break;
+                }
+            }
+            }
             // checkout
             string confirm = GetYesOrNo("\nAre you sure you want to checkout? (Y/N): ");
             if (confirm.ToUpper() != "Y")
@@ -162,14 +286,10 @@ partial class Program
             else//receipt
                 Console.Clear();
 
-            Console.WriteLine("\n=== CART MENU ===");
-            Console.WriteLine("1. View Cart");
-            Console.WriteLine("2. Remove Item");
-            Console.WriteLine("3. Update Quantity");
-            Console.WriteLine("4. Clear Cart");
-            Console.WriteLine("5. Checkout");
-
             Console.WriteLine("=== RECEIPT ===");
+            Console.WriteLine($"Receipt No: {receiptCounter:D4}");
+            Console.WriteLine($"Date: {DateTime.Now}");
+            receiptCounter++;
             double grandTotal = 0;
             for (int i = 0; i < cartCount; i++)
             {
@@ -185,12 +305,42 @@ partial class Program
             }
             double finalTotal = grandTotal - discount;
             Console.WriteLine($"Final Total: ₱{finalTotal}");
+            double payment;
+
+            while (true)
+            {
+                Console.Write("Enter payment: ");
+                if (!double.TryParse(Console.ReadLine(), out payment))
+                {
+                    Console.WriteLine("Invalid input.");
+                    continue;
+                }
+
+                if (payment < finalTotal)
+                {
+                    Console.WriteLine("Insufficient payment.");
+                    continue;
+                }
+
+                break;
+            }
+
+            double change = payment - finalTotal;
+            Console.WriteLine($"Change: ₱{change}");
             Console.WriteLine("\nThank you for shopping with us!");
 
             Console.WriteLine("\n=== UPDATED STOCK ===");
             foreach (var p in products)
                 p.DisplayProduct();
-            continueTransaction = GetYesOrNo("\nStart another transaction? (Y/N): ");
+            Console.WriteLine("\nLOW STOCK ALERT:");
+            foreach (var p in products)
+            {
+                if (p.RemainingStock <= 5)
+                {
+                    Console.WriteLine($"{p.Name} has only {p.RemainingStock} left.");
+                }
+            }
+continueTransaction = GetYesOrNo("\nStart another transaction? (Y/N): ");
 
             Console.Clear();
         }
