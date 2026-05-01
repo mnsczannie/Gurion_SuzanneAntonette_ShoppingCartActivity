@@ -18,7 +18,7 @@ namespace _1_ShoppingCartActivity
         public void DisplayProduct()
         {
             int consumed = OriginalStock - RemainingStock;
-            Console.WriteLine($"{Id}: {Name} ({Category}) - ₱{Price}");
+            Console.WriteLine($"{Id}: {Name} - ₱{Price}");
         }
 
         public double GetItemTotal(int quantity)
