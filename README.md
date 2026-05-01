@@ -21,7 +21,7 @@ This project demonstrates object-oriented programming, arrays, loops, conditiona
 ![Main Menu Screenshot](images/MainMenu.png)
 
 ### 1. Cart Management System
-![Cart Management Screenshot](images/CartManagement.png)
+![Cart Management Screenshot](images/CartMenu.png)
 
 The program now allows full cart control before checkout:
 - View cart items
@@ -42,6 +42,7 @@ A search function was added to allow users to find products by name.
 Example:
 Enter product name to search: "mouse"
 Search results:
+
 16. Mouse - ₱500
 
 Displays matching products with product number, name, and price.
