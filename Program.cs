@@ -120,8 +120,7 @@ partial class Program
             switch (choice)
             {
                 case "1":
-                    string continueTransaction = "Y";
-                    while (continueTransaction.ToUpper() == "Y")
+                    while (true)
                     {
                         CartItem[] cart = new CartItem[50];
                         int cartCount = 0;
