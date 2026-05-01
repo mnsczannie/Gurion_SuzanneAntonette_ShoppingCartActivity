@@ -11,7 +11,11 @@ class CartItem
         SubTotal = Product.Price * Quantity;
     }
 }
-
+class Order
+{
+    public int ReceiptNumber;
+    public double FinalTotal;
+}
 partial class Program
 {
     static void Pause()
@@ -19,8 +23,24 @@ partial class Program
         Console.WriteLine("\nPress any key to continue...");
         Console.ReadKey();
     }
+    static string GetYesOrNo(string message)//validation for yes or no input
+    {
+        string input;
+        while (true)
+        {
+            Console.Write(message);
+            input = Console.ReadLine().Trim().ToUpper();
+
+            if (input = "Y" || input == "N")
+                return input;
+
+            Console.WriteLine("Invalid input. Please enter Y or N only.");
+        }
+    }
     static void Main()
     {
+        Order[] orders = new Order[50];
+        int orderCount = 0;
         int receiptCounter = 1;
         //product list
         Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -57,22 +77,6 @@ partial class Program
                 new Product { Id = 24, Name = "Sweater", Price = 2500, RemainingStock = 10, OriginalStock = 10, Category = "Clothing" }
             }
     };
-
-        static string GetYesOrNo(string message)//validation for yes or no input
-    {
-            string input;
-            while (true)
-            {
-                Console.Write(message);
-                input = Console.ReadLine().Trim().ToUpper();
-
-                if (input = "Y" || input == "N")
-                    return input;
-
-                Console.WriteLine("Invalid input. Please enter Y or N only.");
-            }
-        }
-
         string continueTransaction = "Y";
         while (continueTransaction.ToUpper() == "Y")
         {
@@ -267,7 +271,12 @@ partial class Program
 
                     case "5": // CHECKOUT
                         isCheckingOut = true;
-                        break;
+                        orders [orderCount++] = new Order
+                        {
+                            ReceiptNumber = receiptCounter - 1,
+                            FinalTotal = finalTotal
+                        };
+            break;
 
                     default:
                         Console.WriteLine("Invalid choice.");
@@ -285,6 +294,12 @@ partial class Program
             }
             else//receipt
                 Console.Clear();
+
+            orders[orderCount++] = new Order
+            {
+                ReceiptNumber = receiptCounter - 1,
+                FinalTotal = finalTotal // will be updated after calculating total
+            };
 
             Console.WriteLine("=== RECEIPT ===");
             Console.WriteLine($"Receipt No: {receiptCounter:D4}");
@@ -340,9 +355,14 @@ partial class Program
                     Console.WriteLine($"{p.Name} has only {p.RemainingStock} left.");
                 }
             }
-continueTransaction = GetYesOrNo("\nStart another transaction? (Y/N): ");
+            continueTransaction = GetYesOrNo("\nStart another transaction? (Y/N): ");
 
             Console.Clear();
+            Console.WriteLine("\n=== ORDER HISTORY ===");
+            for (int i = 0; i < orderCount; i++)
+            {
+                Console.WriteLine($"Receipt #{orders[i].ReceiptNumber:D4} - ₱{orders[i].FinalTotal}");
+            }
         }
     }
 }
