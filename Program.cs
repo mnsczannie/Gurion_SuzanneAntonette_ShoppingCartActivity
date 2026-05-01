@@ -16,33 +16,34 @@ class Order
     public int ReceiptNumber;
     public double FinalTotal;
 }
-static void SearchProduct(Product[] products)
-{
-    Console.Write("\nEnter product name to search: ");
-    string keyword = Console.ReadLine().ToLower();
 
-    bool found = false;
-
-    Console.WriteLine("\n=== SEARCH RESULTS ===");
-
-    foreach (var p in products)
-    {
-        if (p.Name.ToLower().Contains(keyword))
-        {
-            p.DisplayProduct();
-            found = true;
-        }
-    }
-
-    if (!found)
-    {
-        Console.WriteLine("No matching product found.");
-    }
-
-    Pause();
-}
 partial class Program
 {
+    static void SearchProduct(Product[] products)
+    {
+        Console.Write("\nEnter product name to search: ");
+        string keyword = Console.ReadLine().ToLower();
+
+        bool found = false;
+
+        Console.WriteLine("\n=== SEARCH RESULTS ===");
+
+        foreach (var p in products)
+        {
+            if (p.Name.ToLower().Contains(keyword))
+            {
+                p.DisplayProduct();
+                found = true;
+            }
+        }
+
+        if (!found)
+        {
+            Console.WriteLine("No matching product found.");
+        }
+
+        Pause();
+    }
     static void Pause()
     {
         Console.WriteLine("\nPress any key to continue...");
@@ -421,12 +422,14 @@ partial class Program
                 case "5":
                     exit = true;
                     break;
-                }
+                default:
+                    Console.WriteLine("Invalid choice. Please select a valid option.");
+                    Pause();
+                    break;
+
 
             }
         }
-
     }
-
 }
 
